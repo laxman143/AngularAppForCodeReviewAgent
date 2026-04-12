@@ -57,3 +57,11 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+------------ Code reviews file 
+CODE_REVIEW_GUIDE.md	📘 User guide (commands, usage)	Developers (you/team)
+
+code-review.agent.md	🤖 Agent brain (how AI behaves)	Copilot / AI Agent
+
+pre-codereview.md	📏 Rules engine (standards)	AI Agent (core logic)
