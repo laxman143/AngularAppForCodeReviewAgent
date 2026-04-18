@@ -1,8 +1,14 @@
-# Code Review Agent - Command Reference 
-# Description - It is use for User Guide ( commands , usags)
+# Code Review - Command Reference
 
 ## Overview
-The `@code-review` agent provides automated Angular code review with strict repository standards enforcement. It can analyze unstaged changes, staged changes, or committed code, and either report issues or automatically fix them.
+This repository uses an Angular code review **skill** (`SKILL.md`) backed by a **custom agent** (`code-review.agent.md`). Together they provide automated Angular code review with strict repository standards enforcement. The skill can be invoked via the `/code-review` slash command or by tagging `@code-review` in Copilot Chat. It can analyze unstaged changes, staged changes, or committed code, and either report issues or automatically fix them.
+
+## How to Invoke
+
+| Method | Example | When to Use |
+|--------|---------|-------------|
+| Slash command | `/code-review staged` | Quickest — type `/` and select from list |
+| Natural language | `review my unstaged changes` | Copilot auto-discovers the skill from keywords |
 
 ## Command Categories
 
@@ -161,8 +167,9 @@ Files are edited directly. After completion, you'll see:
 
 ## Additional Resources
 
-- **Agent Definition**: `.github/code-review.agent.md` - Agent configuration and workflow
-- **Review Standards**: `pre-codereview.md` - Complete review rules and examples
+- **Skill Entry Point**: `.github/skills/code-review/SKILL.md` - Skill registration, invocation triggers, and procedure
+- **Agent Definition**: `.github/agents/code-review.agent.md` - Agent brain: scope detection, auto-fix workflow
+- **Review Standards**: `.github/skills/code-review/pre-code-review.md` - Complete Angular review rules and examples
 - **Repository Standards**: Enforces strict TypeScript, no hardcoded strings, and absolute imports
 
 ## Installation
@@ -179,7 +186,7 @@ No installation required! The agent is automatically available when you open thi
 
 ## Support
 
-For issues or questions about the code review agent, refer to:
-- `pre-codereview.md` for detailed standards
-- `.github/code-review.agent.md` for agent implementation
-- Team code review guidelines in `pre-codereview.md`
+For issues or questions about the code review skill, refer to:
+- `.github/skills/code-review/pre-code-review.md` for detailed standards and examples
+- `.github/skills/code-review/SKILL.md` for skill invocation and procedure
+- `.github/agents/code-review.agent.md` for agent implementation and workflow

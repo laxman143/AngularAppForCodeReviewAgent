@@ -1,13 +1,16 @@
 ---
 name: code-review
-description: Review Angular (v17+) code changes against repository standards. Supports unstaged, staged, and committed code review. Checks for bugs, security issues, TypeScript quality, Angular best practices, performance, and accessibility. Can report issues or auto-fix them directly.
+description: >
+  Angular (v17+) code review agent for this repository. Use when asked to review or auto-fix
+  code changes — staged, unstaged, or committed. Enforces mandatory repository standards. Supports review-only mode (line-by-line
+  findings with suggested fixes) and auto-fix mode (directly patches files via VS Code diff UI).
 ---
 
 # this files Agent brain - How AI behaves
 
 # Code Review Agent
 
-When the user asks for code review, always follow the coding standards defined in the repository file `pre-codereview.md`.
+When the user asks for code review, always follow the coding standards defined in `.github/skills/code-review/pre-code-review.md`.
 
 ## Review Modes
 
@@ -26,21 +29,26 @@ The agent supports two behaviors:
 
 ## Workflow Steps
 
-1. **Read the standards**: Load `pre-codereview.md` from the repository.
+1. **Read the standards**: Load `pre-code-review.md` from the repository.
 
 2. **Determine review scope** (check in this order):
    
    **FIRST: Check for explicit branch comparison (highest priority)**
-   - If user's query contains "against <branch>" pattern (e.g., "review against main", "review and fix against v18"):
+   - If user's query contains "against <branch>" pattern (e.g., "review against main", "review and fix against develop"):
      - Extract the branch name from the query
+     - Run `git rev-parse --abbrev-ref HEAD` to get the current branch name
      - Use terminal: `git diff <branch>...HEAD` to get commits compared to that branch
      - This applies to both review-only and auto-fix modes
-     - Common branches: main, develop, v18, staging, etc.
+     - Common branches: main, develop, staging, etc.
    
    **SECOND: Check for commit review keywords**
    - If user asks "review commits", "review my commits", or "review committed changes":
-     - Use terminal: `git diff main...HEAD` to get commits compared to main branch
-     - Default to main branch when no branch is specified
+     - Run `git rev-parse --abbrev-ref HEAD` to detect the current branch name
+     - Run `git log --oneline main...HEAD` to confirm there are commits ahead of main
+     - If commits exist: use terminal `git diff main...HEAD` to get all commits on current branch vs main
+     - If NO commits exist (branch is at same point as main): inform the user:
+       > "No commits found ahead of main on branch '<current-branch>'. There is nothing to review. Try `review staged` or `review unstaged` instead."
+     - Always show the user which branch is being compared, e.g.: "Reviewing commits on `<current-branch>` against `main`..."
    
    **THIRD: Check for explicit staged/unstaged keywords**
    - If user asks "review staged" or "review staged changes":
@@ -59,7 +67,7 @@ The agent supports two behaviors:
    - **Review Only** (default): Report issues with line numbers, descriptions, and suggested fixes in text format
    - **Auto-Fix**: Directly apply changes to files using `replace_string_in_file` or `multi_replace_string_in_file`
 
-4. **Apply review rules**: Apply the standards from `pre-codereview.md` to the changed lines.
+4. **Apply review rules**: Apply the standards from `pre-code-review.md` to the changed lines.
 
 5. **Provide feedback**:
    - For **Review Only**: Give specific line-by-line suggestions with exact code fixes
