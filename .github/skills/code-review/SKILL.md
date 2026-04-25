@@ -41,9 +41,11 @@ Supports three scopes:
 
 ## Output Format
 
+Every `LINE` reference must be a clickable markdown link so the user can jump directly to the file and line in VS Code:
+
 ```text
 [FILE] src/app/example.component.ts
-LINE 42 - [MUST] Missing subscription teardown.
+[LINE 42](src/app/example.component.ts#L42) - [MUST] Missing subscription teardown.
 Suggested Fix:
 this.data$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(...);
 ```

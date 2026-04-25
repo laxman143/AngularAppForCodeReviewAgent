@@ -102,14 +102,17 @@ Automatically applies safe fixes directly to your files using VS Code's diff UI.
 ## Output Format
 
 ### Review Only Mode
+
+Each `LINE` reference is a clickable link — click it to jump directly to the file and line in VS Code.
+
 ```text
 [FILE] src/app/example.component.ts
-LINE 42 - [MUST] Missing subscription teardown.
+[LINE 42](src/app/example.component.ts#L42) - [MUST] Missing subscription teardown.
 Suggested Fix:
 this.data$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(...);
 
 [FILE] src/app/example.component.ts
-LINE 57 - [SHOULD] Variable is never reassigned.
+[LINE 57](src/app/example.component.ts#L57) - [SHOULD] Variable is never reassigned.
 Suggested Fix:
 const status = this.getStatus();
 ```

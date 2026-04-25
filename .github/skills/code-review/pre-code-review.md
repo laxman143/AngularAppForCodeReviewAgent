@@ -69,18 +69,18 @@ When reviewing a file, always generate a line-wise actionable review.
 - Do not combine multiple findings into one block if they point to different lines.
 - Repeat the file and line reference for every separate finding.
 - Each finding must use either one exact line number or one exact file line range.
-- Use this format:
+- Use this format, with the LINE reference as a clickable markdown link:
 
 ```text
 [FILE] <relative-path>
-LINE <number> - [MUST|SHOULD|NICE] Issue description
+[LINE <number>](<relative-path>#L<number>) - [MUST|SHOULD|NICE] Issue description
 Suggested Fix:
 <exact code change or code snippet>
 ```
 
 ```text
 [FILE] <relative-path>
-LINE <start>-<end> - [MUST|SHOULD|NICE] Issue description
+[LINE <start>-<end>](<relative-path>#L<start>-L<end>) - [MUST|SHOULD|NICE] Issue description
 Suggested Fix:
 <exact code change or code snippet>
 ```
@@ -89,12 +89,12 @@ Suggested Fix:
 
 ```text
 [FILE] src/app/example.component.ts
-LINE 42 - [MUST] Missing subscription teardown.
+[LINE 42](src/app/example.component.ts#L42) - [MUST] Missing subscription teardown.
 Suggested Fix:
 this.data$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(...);
 
 [FILE] src/app/example.component.ts
-LINE 57 - [SHOULD] Variable is never reassigned.
+[LINE 57](src/app/example.component.ts#L57) - [SHOULD] Variable is never reassigned.
 Suggested Fix:
 const status = this.getStatus();
 ```
