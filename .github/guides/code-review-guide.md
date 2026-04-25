@@ -1,7 +1,7 @@
 # Code Review - Command Reference
 
 ## Overview
-This repository uses an Angular code review **skill** (`SKILL.md`) backed by a **custom agent** (`code-review.agent.md`). Together they provide automated Angular code review with strict repository standards enforcement. The skill can be invoked via the `/code-review` slash command or by tagging `@code-review` in Copilot Chat. It can analyze unstaged changes, staged changes, or committed code, and either report issues or automatically fix them.
+This repository uses an Angular code review **skill** (`SKILL.md`) backed by a **custom agent** (`code-review.agent.md`). Together they provide automated Angular code review with strict repository standards enforcement. The skill can be invoked via the `/code-review` slash command in Copilot Chat. It can analyze unstaged changes, staged changes, or committed code, and either report issues or automatically fix them.
 
 ## How to Invoke
 
@@ -17,25 +17,24 @@ Reports issues with line numbers and suggested fixes without modifying files.
 
 | Command | Description |
 |---------|-------------|
-| `@code-review review my code` | **Smart auto-detection**: First checks for staged changes, then unstaged changes, then asks if you want to review commits. Best for quick reviews when you're not sure what's changed. |
-| `@code-review review staged` | Reviews only changes that have been `git add`'ed (staged for commit). Use this before committing. |
-| `@code-review review unstaged` | Reviews working directory changes that haven't been staged yet. Use this while actively coding. |
-| `@code-review review commits` | Compares all commits on your current branch against the `main` branch. Shows what will be reviewed in a PR. |
-| `@code-review review my commits` | Same as above - compares current branch commits with main. |
-| `@code-review review against main` | Explicitly compares your branch against main branch. Useful for final PR preparation. |
-| `@code-review review against <branch>` | Compares your branch against any specified branch. Examples: `review against v18`, `review against develop`. |
+| `/code-review` | **Smart auto-detection**: First checks for staged changes, then unstaged changes, then asks if you want to review commits. Best for quick reviews when you're not sure what's changed. |
+| `/code-review staged` | Reviews only changes that have been `git add`'ed (staged for commit). Use this before committing. |
+| `/code-review unstaged` | Reviews working directory changes that haven't been staged yet. Use this while actively coding. |
+| `/code-review commits` | Compares all commits on your current branch against the `main` branch. Shows what will be reviewed in a PR. |
+| `/code-review my commits` | Same as above - compares current branch commits with main. |
+| `/code-review against main` | Explicitly compares your branch against main branch. Useful for final PR preparation. |
+| `/code-review against <branch>` | Compares your branch against any specified branch. Examples: `against v18`, `against develop`. |
 
 ### 🔧 Auto-Fix Mode
 Automatically applies safe fixes directly to your files using VS Code's diff UI.
 
 | Command | Description |
 |---------|-------------|
-| `@code-review review and fix` | **Auto-fixes all detectable issues**: Applies safe fixes (const, optional chaining, track/trackBy, absolute imports, hardcoded strings → constants). Auto-detects scope like review mode. |
-| `@code-review auto-fix my code` | Same as above - applies all fixable issues with smart scope detection. |
-| `@code-review review and fix staged` | Auto-fixes only staged changes. Review and accept/reject each fix before committing. |
-| `@code-review review and fix unstaged` | Auto-fixes only working directory changes. Great for cleaning up code during development. |
-| `@code-review review and fix commits` | Auto-fixes issues in committed code by creating new edits in your working directory. You'll need to commit the fixes separately. |
-| `@code-review review and fix against <branch>` | Auto-fixes commits compared to specified branch. Examples: `review and fix against v18`. |
+| `/code-review fix` | **Auto-fixes all detectable issues**: Applies safe fixes (const, optional chaining, track/trackBy, absolute imports, hardcoded strings → constants). Auto-detects scope like review mode. |
+| `/code-review fix staged` | Auto-fixes only staged changes. Review and accept/reject each fix before committing. |
+| `/code-review fix unstaged` | Auto-fixes only working directory changes. Great for cleaning up code during development. |
+| `/code-review fix commits` | Auto-fixes issues in committed code by creating new edits in your working directory. You'll need to commit the fixes separately. |
+| `/code-review fix against <branch>` | Auto-fixes commits compared to specified branch. Examples: `fix against v18`. |
 
 ## What Gets Reviewed
 
