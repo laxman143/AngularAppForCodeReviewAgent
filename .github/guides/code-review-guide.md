@@ -134,37 +134,37 @@ Files are edited directly. After completion, you'll see:
 ### Before Committing
 ```bash
 # Review what you're about to commit
-@code-review review staged
+/code-review staged
 
 # Or auto-fix issues before committing
-@code-review review and fix staged
+/code-review fix staged
 ```
 
 ### During Development
 ```bash
 # Quick check of current changes
-@code-review review unstaged
+/code-review unstaged
 
 # Clean up code automatically
-@code-review review and fix unstaged
+/code-review fix unstaged
 ```
 
 ### Before Creating PR
 ```bash
 # See all changes vs main branch
-@code-review review commits
+/code-review commits
 
 # Compare against a specific branch
-@code-review review against v18
+/code-review against v18
 
 # Auto-fix everything before PR
-@code-review review and fix
+/code-review fix
 ```
 
 ### Not Sure What Changed
 ```bash
 # Let the agent figure it out
-@code-review review my code
+/code-review
 ```
 
 ## Additional Resources
